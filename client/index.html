@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💬 ChatApp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- ══════════════════════════════════════════
+         USERNAME SCREEN
+         Shown first — user must enter a name
+    ═══════════════════════════════════════════ -->
+    <div class="overlay" id="usernameOverlay">
+      <div class="username-box">
+        <div class="logo">💬</div>
+        <h2>Welcome to ChatApp</h2>
+        <p>Pick a username to start chatting</p>
+        <input
+          type="text"
+          id="usernameInput"
+          placeholder="Your name..."
+          maxlength="20"
+          autocomplete="off"
+        />
+        <button id="joinBtn">Join Chat →</button>
+        <p class="hint">Press Enter to join</p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         MAIN CHAT SCREEN
+         Hidden until user joins
+    ═══════════════════════════════════════════ -->
+    <div class="chat-app" id="chatApp" style="display: none;">
+
+      <!-- ── LEFT SIDEBAR ───────────────────── -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <span class="sidebar-logo">💬</span>
+          <span class="sidebar-title">ChatApp</span>
+        </div>
+        <div class="online-box">
+          <span class="green-dot"></span>
+          <span id="onlineCount">1</span> online
+        </div>
+        <div class="sidebar-user">
+          You are: <strong id="displayUsername"></strong>
+        </div>
+      </aside>
+
+      <!-- ── MAIN CHAT AREA ─────────────────── -->
+      <main class="chat-main">
+
+        <!-- Header -->
+        <header class="chat-header">
+          <div class="chat-header-info">
+            <h3>General Chat</h3>
+            <span id="headerOnline">1 online</span>
+          </div>
+        </header>
+
+        <!-- Messages container — all messages appear here -->
+        <div class="messages" id="messages">
+          <!-- Messages injected by JavaScript -->
+        </div>
+
+        <!-- Typing indicator — shown below messages -->
+        <div class="typing-indicator" id="typingIndicator" style="display:none;">
+          <div class="typing-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span id="typingText">Someone is typing...</span>
+        </div>
+
+        <!-- Input Bar -->
+        <footer class="input-bar">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type a message..."
+            maxlength="500"
+            autocomplete="off"
+          />
+          <button id="sendBtn">
+            <!-- Paper plane SVG icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </footer>
+
+      </main>
+    </div>
+
+    <!-- Socket.io client library — served automatically by the server -->
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <!-- Our chat logic -->
+    <script src="script.js"></script>
+
+  </body>
+</html>
